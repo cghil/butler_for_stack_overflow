@@ -18,7 +18,7 @@ angular.module('myAuthApp')
         return /[0-9]/.test(pwd);
     };
 
-    this.arePasswordMatching = function(pwd1, pwd2) {
+    this.arePasswordsMatching = function(pwd1, pwd2) {
       if (pwd1 !== pwd2) {
         return true;
       } else {

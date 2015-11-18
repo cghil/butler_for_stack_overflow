@@ -17,7 +17,7 @@ angular.module('myAuthApp')
             }
 
             if (!validationService.hasANumber(newValue)) {
-                $scope.reqs.push('Password must have one number');
+                $scope.reqs.push('Password must have >=one number');
             }
 
             $scope.showReqs = $scope.reqs.length;

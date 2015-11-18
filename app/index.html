@@ -43,6 +43,7 @@
               <li ng-cloak ng-show="userSession" ng-class="{active: isActive('/users' + sessionStorage.id)}"><a ng-href="#/users{{user.id}}">Profile</a></li>
               <li ng-class="{ active: isActive('/about') }"><a ng-href="#/about">About</a></li>
               <li ng-cloak ng-hide="userSession" ng-class="{ active: isActive('/signin') }"><a ng-href="#/signin">Sign In</a></li>
+              <li ng-cloak ng-hide="userSession" ng-class="{ active: isActive('/signup') }"><a ng-href="#/signup">Sign Up</a></li>
               <li ng-cloak ng-show="userSession" ng-click="signOutUser()"><a href="#/">Sign Out</a></li>
             </ul>
           </div>

@@ -1,1 +1,32 @@
-<p>This is the signup view.</p>
+<div class="container">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Sign Up</div>
+		<div class="panel-body">
+			<form name="signUpForm" ng-submit="submit()">
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input name="email" type="email" placeholder="Email" class="form-control" ng-model="user.email" required>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input name="password" type="password" placeholder="Password" class="form-control" ng-model="user.password" required>
+				</div>
+				<div class="form-group">
+					<label for="password_confirmation">Password Confirmation</label>
+					<input name="passsword_confirmation" type="password" placeholder="Password Confirmation" class="form-control" ng-model="user.password_confirmation" required>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Sign Up" id="submit" class="btn btn-primary">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-danger" ng-show="showReqs">
+		<div class="panel-heading">Requirement Errors</div>
+		<div class="panel-body">
+			<ul>
+				<li ng-repeat="req in reqs">{{ req }}</li>
+			</ul>
+		</div>
+	</div>
+</div>
