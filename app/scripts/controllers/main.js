@@ -8,10 +8,15 @@
  * Controller of the myAuthApp
  */
 angular.module('myAuthApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('MainCtrl', function($scope, sessionService) {
+
+        $scope.userSession = sessionService.isAuthorized;
+
+        $scope.$watch(function() {
+            return sessionService.isAuthorized
+        }, function() {
+            $scope.userSession = sessionService.isAuthorized;
+            $scope.user = sessionService.currentUser();
+        });
+
+    });

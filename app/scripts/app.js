@@ -10,6 +10,7 @@
  */
 angular
   .module('myAuthApp', [
+    'ENV.development',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -31,7 +32,17 @@ angular
         templateUrl: 'views/signin.html',
         controller: 'SigninCtrl'
       })
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl',
+        controllerAs: 'signup'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  });
+
+angular.module('ENV.development', [])
+  .constant('myConfig', {
+    backend: 'http://localhost:3000'
   });

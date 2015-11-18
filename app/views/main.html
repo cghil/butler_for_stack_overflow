@@ -1,8 +1,9 @@
 <div class="jumbotron">
-  <h1>Hello welcome to the Auth App by Corey!</h1>
+  <h1>May I get the community to answer your question?</h1>
   <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
+    <img src="images/yeoman.png" alt="I'm Butler Kingsly"><br>
     Always a pleasure to serve you.
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/signin">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+  <p ng-hide="userSession"><a class="btn btn-lg btn-success" ng-href="#/signin">Sign In, Good Sir/Madam</a></p>
+  <p ng-show="userSession"><a class="btn btn-lg btn-success" ng-href="#/question">Have A Question, Sir/Madam?</a></p>
 </div>
