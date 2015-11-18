@@ -31,8 +31,4 @@ angular.module('myAuthApp')
     	return !re.test(email);
     };
 
-    // this.arePasswordsMatching = function(pwd1, pwd2) {
-    // 	return 
-    // }
-
   });

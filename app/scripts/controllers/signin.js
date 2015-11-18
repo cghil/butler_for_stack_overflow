@@ -62,7 +62,7 @@ angular.module('myAuthApp')
                     $scope.showReqs = $scope.reqs.length;
                 }
 
-            })
+            });
         };
 
     });

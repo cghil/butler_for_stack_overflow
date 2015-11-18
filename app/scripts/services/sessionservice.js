@@ -21,14 +21,35 @@ angular.module('myAuthApp')
       })
     };
 
+    session.signUp = function(user){
+      return $http({
+        method: 'POST',
+        url: myConfig.backend + '/api/v1/users',
+        data: user,
+        headers: {'Content-Type': 'application/json'}
+      })
+    };
+
     session.logOut = function(user) {
       $http({
         method: 'DELETE',
         url: myConfig.backend + '/api/v1/sessions/' + sessionStorage.token
       }).then(function(response){
         sessionStorage.clear();
-      })
-    }
+      });
+    };
+
+    session.showUserAsLoggedOut = function(){
+      $http({
+        method: 'DELETE',
+        url: myConfig.backend + '/api/v1/sessions/' + sessionStorage.token
+      }).then(function(response){
+        session.isAuthorized = false;
+        sessionStorage.clear();
+      }, function(response){
+        console.log('Error occur please view response: ' + response)
+      });
+    };
 
     session.currentUser = function(){
       var user = {
@@ -63,12 +84,8 @@ angular.module('myAuthApp')
     session.showUserAsLoggedIn = function(){
       session.isAuthorized = true;
       console.log('user has logged in')
-    }
+    };
 
-    session.showUserAsLoggedOut = function(){
-      session.isAuthorized = false;
-      sessionStorage.clear();
-    }
 
     // Public API here
     return session;
