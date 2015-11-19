@@ -10,6 +10,7 @@
  */
 angular
   .module('myAuthApp', [
+    'ENV.development',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -31,7 +32,27 @@ angular
         templateUrl: 'views/signin.html',
         controller: 'SigninCtrl'
       })
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl',
+        controllerAs: 'signup'
+      })
+      .when('/users/:id', {
+        templateUrl: 'views/users.html',
+        controller: 'UsersCtrl',
+        controllerAs: 'users'
+      })
+      .when('/questions', {
+        templateUrl: 'views/questions.html',
+        controller: 'QuestionsCtrl',
+        controllerAs: 'questions'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  });
+
+angular.module('ENV.development', [])
+  .constant('myConfig', {
+    backend: 'http://localhost:3000'
   });

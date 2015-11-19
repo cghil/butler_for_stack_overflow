@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myAuthApp')
-    .controller('SigninCtrl', function($scope, $log, validationService) {
+    .controller('SigninCtrl', function($scope, $log, validationService, sessionService, $location) {
 
         $scope.user = {};
 
@@ -17,7 +17,7 @@ angular.module('myAuthApp')
             }
 
             if (!validationService.hasANumber(newValue)) {
-                $scope.reqs.push('Password must have one number');
+                $scope.reqs.push('Password must have >=one number');
             }
 
             $scope.showReqs = $scope.reqs.length;
@@ -36,19 +36,34 @@ angular.module('myAuthApp')
             $scope.showReqs = $scope.reqs.length;
         });
 
-        $scope.$watch('user.password_confirmation', function(newValue, oldValue) {
+        $scope.submit = function(){
+            var http = sessionService.signIn($scope.user);
+            http.then(function(response){
+                var email = response.data.email,
+                    token = response.data.auth_token,
+                    id = response.data.id;
 
-            if (!newValue) return;
+                sessionService.setUser(email, token, id);
+                sessionService.showUserAsLoggedIn();
+                $location.path('/#')
 
-            $scope.reqs = [];
+            }, function(response){
 
-            if (validationService.arePasswordMatching(newValue, $scope.user.password)) {
-                $scope.reqs.push('Passwords need to match');
-            };
+                if (response.status === 500) {
+                    $scope.reqs = [];
+                    $scope.reqs.push(response.statusText);
+                    $scope.showReqs = $scope.reqs.length;
+                } else {
+                    $scope.reqs = [];
+                    
+                    var errors = response.data.errors || 'Internal Errors';
+                    
+                    $scope.reqs.push(errors);
+                    $scope.showReqs = $scope.reqs.length;
+                }
 
-            $scope.showReqs = $scope.reqs.length;
-
-        });
+            });
+        };
 
     });
 
