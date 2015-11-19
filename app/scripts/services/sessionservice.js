@@ -8,7 +8,7 @@
  * Factory in the myAuthApp.
  */
 angular.module('myAuthApp')
-  .factory('sessionService', function ($http, myConfig) {
+  .factory('sessionService', function ($http, myConfig, $location) {
 
     var session = {};
 
@@ -28,15 +28,6 @@ angular.module('myAuthApp')
         data: user,
         headers: {'Content-Type': 'application/json'}
       })
-    };
-
-    session.logOut = function(user) {
-      $http({
-        method: 'DELETE',
-        url: myConfig.backend + '/api/v1/sessions/' + sessionStorage.token
-      }).then(function(response){
-        sessionStorage.clear();
-      });
     };
 
     session.showUserAsLoggedOut = function(){
@@ -86,6 +77,23 @@ angular.module('myAuthApp')
       console.log('user has logged in')
     };
 
+    session.isUserAuthorized = function(){
+      if(sessionStorage.token === undefined){
+        return false;
+      } else {
+        if (sessionStorage.token.length === 20 && sessionStorage.length && sessionStorage.hasOwnProperty('token') && sessionStorage.hasOwnProperty('email')){
+          return true;
+        } else {
+          return false
+        }
+      }
+    };
+
+    session.redirectNotAuthenticated = function(){
+      if(!this.isUserAuthorized()){
+        $location.path('/signin');
+      }
+    }
 
     // Public API here
     return session;

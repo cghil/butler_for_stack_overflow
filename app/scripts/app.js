@@ -37,6 +37,16 @@ angular
         controller: 'SignupCtrl',
         controllerAs: 'signup'
       })
+      .when('/users/:id', {
+        templateUrl: 'views/users.html',
+        controller: 'UsersCtrl',
+        controllerAs: 'users'
+      })
+      .when('/questions', {
+        templateUrl: 'views/questions.html',
+        controller: 'QuestionsCtrl',
+        controllerAs: 'questions'
+      })
       .otherwise({
         redirectTo: '/'
       });
