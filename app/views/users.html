@@ -1,5 +1,37 @@
-<div class="jumbotron">
-	<h2>Hello there, {{user.email}}.</h2>
-	<p>Welcome to your profile. If you have a question, please ask the community at Bulter!</p>
-	<p><a class="btn btn-success btn-lg" href="#/questions">Have A Question, Sir/Madam?</a></p>
+<div class="container">
+    <div class="row profile">
+        <div class="col-sm-3">
+            <div class="row">
+                <div class="col-xs-7 col-sm-12">
+                    <img src="{{gravatar}}" class="img-thumbnail">
+                </div>
+                <div class="col-xs-5 col-sm-12">
+                    <h3>General Information</h3>
+                    <ul class="profile-details">
+                        <li>
+                        	<b>Username <span class="glyphicon glyphicon-user" aria-hidden="true"></span></b>
+                        	<div>{{user.username}}</div>
+                        </li>
+                        <li>
+                            <b>Email <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></b>
+                            <div>
+                                <a ng-href="mailto:{{user.email}}">
+                                     {{user.email}}
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <h3>Bio</h3>
+                    <p><span class="glyphicon glyphicon-book"></span> This is a bio</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="well lg-well">
+            	<div class="text-center">
+                	<a class="btn btn-success btn-lg" href="#/questions">Have A Question, Sir/Madam?</a>
+            	</div>
+            </div>
+        </div>
+    </div>
 </div>

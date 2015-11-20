@@ -41,9 +41,10 @@ angular.module('myAuthApp')
             http.then(function(response){
                 var email = response.data.email,
                     token = response.data.auth_token,
-                    id = response.data.id;
-
-                sessionService.setUser(email, token, id);
+                    id = response.data.id,
+                    username = response.data.username,
+                    gravatar = response.data.gravatar;
+                sessionService.setUser(email, token, id, username, gravatar);
                 sessionService.showUserAsLoggedIn();
                 $location.path('/#')
 

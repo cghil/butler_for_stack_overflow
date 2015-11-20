@@ -10,6 +10,10 @@
 angular.module('myAuthApp')
     .controller('NavCtrl', function($scope, $location, sessionService) {
 
+        $scope.userPageSessionId = function(){
+            return "/users/" + sessionStorage.id;
+        };
+
         $scope.isActive = function(viewLocation) {
             return viewLocation === $location.path()
         };

@@ -26,6 +26,17 @@ angular.module('myAuthApp')
     	$scope.showReqs = $scope.reqs.length;
     });
 
+    $scope.$watch('user.username', function(newValue, oldValue){
+        if (!newValue) return;
+        $scope.reqs = [];
+
+        if (!validationService.isGreaterThanFourCharacters(newValue)){
+            $scope.reqs.push('Username needs to be > 4 characters');
+        };
+
+        $scope.showReqs = $scope.reqs.length;
+    });
+
     $scope.$watch('user.email', function(newValue, oldValue){
     	if (!newValue) return;
 
@@ -41,7 +52,7 @@ angular.module('myAuthApp')
     $scope.$watch('user.password_confirmation', function(newValue, oldValue){
     	if (!newValue) return;
 
-    	$scope.reqs = [];
+    	$scope.reqs = [];[]
 
     	if(validationService.arePasswordsMatching(newValue, $scope.user.password)) {
     		$scope.reqs.push('Passwords must match');
@@ -61,9 +72,11 @@ angular.module('myAuthApp')
 	    	http.then(function(response){
 	    		var email = response.data.email,
 	    			token = response.data.auth_token,
-	    			id = response.data.id;
+	    			id = response.data.id,
+                    username = response.data.username,
+                    gravatar = response.data.gravatar;
 
-	    		sessionService.setUser(email, token, id);
+	    		sessionService.setUser(email, token, id, username, gravatar);
 	    		sessionService.showUserAsLoggedIn();
 	    		$location.path('#/');
 	    	}, function(response){
