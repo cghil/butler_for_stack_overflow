@@ -8,10 +8,12 @@
  * Controller of the myAuthApp
  */
 angular.module('myAuthApp')
-  .controller('QuestionsCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('QuestionsCtrl', function (questionService, $http, $scope, $log) {
+    var httpQuestions = questionService.getQuestions();
+
+    httpQuestions.then(function(response){
+    	$scope.questions = response.data.questions;
+    }, function(response){
+    	$log.log('An error occurred; could not reach resource');
+    })
   });

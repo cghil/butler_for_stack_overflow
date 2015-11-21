@@ -52,7 +52,7 @@ angular.module('myAuthApp')
     $scope.$watch('user.password_confirmation', function(newValue, oldValue){
     	if (!newValue) return;
 
-    	$scope.reqs = [];[]
+    	$scope.reqs = [];
 
     	if(validationService.arePasswordsMatching(newValue, $scope.user.password)) {
     		$scope.reqs.push('Passwords must match');
