@@ -48,7 +48,7 @@ angular.module('myAuthApp')
         token: sessionStorage.token,
         id: sessionStorage.id
       }
-      return user
+      return user;
     };
 
     session.setUser = function(email, token, id, username, gravatar){

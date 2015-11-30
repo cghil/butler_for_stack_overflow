@@ -19,5 +19,17 @@ angular.module('myAuthApp')
   		})
   	};
 
+    service.createQuestions = function(token, question){
+      return $http({
+        method: 'POST',
+        url: myConfig.backend + '/api/v1/questions',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        },
+        data: question
+      })
+    };
+
   	return service;
   });
