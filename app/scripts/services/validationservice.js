@@ -26,6 +26,10 @@ angular.module('myAuthApp')
       }
     }
 
+    this.isGreaterThanFourCharacters = function(string){
+      return string.length > 4;
+    }
+
     this.isEmailValid = function(email){
     	var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     	return !re.test(email);

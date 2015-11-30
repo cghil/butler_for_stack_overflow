@@ -48,19 +48,23 @@ angular.module('myAuthApp')
         token: sessionStorage.token,
         id: sessionStorage.id
       }
-      return user
+      return user;
     };
 
-    session.setUser = function(email, token, id){
+    session.setUser = function(email, token, id, username, gravatar){
 
       sessionStorage.email = email;
       sessionStorage.token = token;
       sessionStorage.id = id;
+      sessionStorage.username = username;
+      sessionStorage.gravatar = gravatar;
 
       var user = {
         email: sessionStorage.email,
         token: sessionStorage.token,
-        id: sessionStorage.id
+        id: sessionStorage.id,
+        username: sessionStorage.username,
+        gravatar: sessionStorage.gravatar
       };
 
       return user;
@@ -84,7 +88,7 @@ angular.module('myAuthApp')
         if (sessionStorage.token.length === 20 && sessionStorage.length && sessionStorage.hasOwnProperty('token') && sessionStorage.hasOwnProperty('email')){
           return true;
         } else {
-          return false
+          return false;
         }
       }
     };
