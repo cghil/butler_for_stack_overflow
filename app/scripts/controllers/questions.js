@@ -41,6 +41,21 @@ angular.module('myAuthApp')
             var http = questionService.createQuestions(sessionStorage.token, question);
             http.then(function(response){
                 $scope.questions.unshift(response.data);
+                $scope.question = {};
+                $scope.changeShowStatusQuestionForm();
+            }, function(response){
+                if (response.status === 500) {
+                    $scope.reqs = [];
+                    $scope.reqs.push(response.statusText);
+                    $scope.showReqs = $scope.reqs.length;
+                } else {
+                    $scope.reqs = [];
+
+                    var errors = response.data.errors || 'Internal Error';
+
+                    $scope.reqs.push(errors);
+                    $scope.showReqs = $scope.reqs.length;
+                }
             });
         };
 

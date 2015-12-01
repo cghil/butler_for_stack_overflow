@@ -47,6 +47,11 @@ angular
         controller: 'QuestionsCtrl',
         controllerAs: 'questions'
       })
+      .when('/questions/:id', {
+        templateUrl: 'views/singlequestion.html',
+        controller: 'QuestionCtrl',
+        controllerAs: 'singlequestion'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+	    <div class="panel panel-primary">
+	        <div class="panel-heading">
+	            {{question.title}}
+	        </div>
+	        <div class="panel-body">
+	            {{question.body}}
+	        </div>
+	    </div>
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-md-8">
+		<div class="page-header">
+			<h1><small class="pull-right">{{comments.length}}</small>Comments</h1>
+		</div>
+		<div class="comments-list">
+			<div ng-repeat="comment in comments">
+				<div class="media">
+					<p class="pull-right"><small>5 days ago</small></p>
+					<a class="media-left">
+						<img src="{{comment.gravatar}}" class="img-thumbnail">
+					</a>
+				</div>
+			</div>
+			<!-- <div class="media">
+				<p class="pull-right"></p>
+			</div> -->
+		</div>
+	</div>
+</div>

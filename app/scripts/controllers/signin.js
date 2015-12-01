@@ -5,24 +5,6 @@ angular.module('myAuthApp')
 
         $scope.user = {};
 
-
-        $scope.$watch('user.password', function(newValue, oldValue) {
-
-            if (!newValue) return;
-
-            $scope.reqs = [];
-
-            if (!validationService.isLongEnough(newValue)) {
-                $scope.reqs.push('Password must be >= 8 characters');
-            }
-
-            if (!validationService.hasANumber(newValue)) {
-                $scope.reqs.push('Password must have >=one number');
-            }
-
-            $scope.showReqs = $scope.reqs.length;
-        });
-
         $scope.$watch('user.email', function(newValue, oldValue) {
 
             if (!newValue) return;
@@ -46,10 +28,9 @@ angular.module('myAuthApp')
                     gravatar = response.data.gravatar;
                 sessionService.setUser(email, token, id, username, gravatar);
                 sessionService.showUserAsLoggedIn();
-                $location.path('/#')
+                $location.path('/users/'+ id);
 
             }, function(response){
-
                 if (response.status === 500) {
                     $scope.reqs = [];
                     $scope.reqs.push(response.statusText);
