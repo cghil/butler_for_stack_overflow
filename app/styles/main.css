@@ -78,3 +78,8 @@ body {
     border-bottom: 0;
   }
 }
+
+.user_name {
+    font-size:14px;
+    font-weight: bold;
+}
