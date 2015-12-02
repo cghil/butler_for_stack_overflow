@@ -19,10 +19,10 @@
 				<p>Add a comment <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></p>
 			</a>
 			<div ng-show="showCommentForm">
-				<form>
+				<form ng-submit="submitComment()">
 					<div class="form-group">
 						<label for="comment">Comment</label>
-						<textarea class="form-control" id="comment" placeholder="add comment" rows="2"></textarea>
+						<textarea class="form-control" id="comment" placeholder="add comment" rows="2" ng-model="newComment.body"></textarea>
 					</div>
 					<button type="submit" class="btn btn-success">Add</button>
 				</form>
@@ -32,7 +32,10 @@
 			<div ng-repeat="comment in comments">
 				<div class="media">
 					<p class="pull-right"><small>{{ moment(comment.created_at, moment.ISO_8601).fromNow() }}</small></p>
-					<a class="media-left">
+					<div class="pull-right" ng-show="showDelete(comment)">
+						<button class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button></p>
+					</div>
+					<a class="media-left" ng-href="#/users/{{comment.user_id}}">
 						<img src="{{comment.gravatar}}" class="img-thumbnail">
 					</a>
 				</div>
