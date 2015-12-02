@@ -31,5 +31,13 @@ angular.module('myAuthApp')
       })
     };
 
+    service.getSingleQuestion = function(questionId){
+      return $http({
+        method: 'GET',
+        url: myConfig.backend + '/api/v1/questions/' + questionId,
+        headers: {'Content-Type' : 'application/json'}
+      })
+    };
+
   	return service;
   });

@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+	    <div class="panel panel-primary">
+	        <div class="panel-heading">
+	            {{question.title}}
+	        </div>
+	        <div class="panel-body">
+	            {{question.body}}
+	        </div>
+	    </div>
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="page-header">
+			<h3><small class="pull-right">{{comments.length}}</small>Comments</h3>
+			<a ng-show="userSession" ng-href="#/questions/{{question.id}}" ng-click="addCommentForm()">
+				<p>Add a comment <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></p>
+			</a>
+			<div ng-show="showCommentForm">
+				<form>
+					<div class="form-group">
+						<label for="comment">Comment</label>
+						<textarea class="form-control" id="comment" placeholder="add comment" rows="2"></textarea>
+					</div>
+					<button type="submit" class="btn btn-success">Add</button>
+				</form>
+			</div>
+		</div>
+		<div class="comments-list">
+			<div ng-repeat="comment in comments">
+				<div class="media">
+					<p class="pull-right"><small>{{ moment(comment.created_at, moment.ISO_8601).fromNow() }}</small></p>
+					<a class="media-left">
+						<img src="{{comment.gravatar}}" class="img-thumbnail">
+					</a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading user_name">{{comment.author}}</h4>
+					{{comment.body}}
+				</div>
+				<hr>
+			</div>
+			<!-- <div class="media">
+				<p class="pull-right"></p>
+			</div> -->
+		</div>
+	</div>
+</div>

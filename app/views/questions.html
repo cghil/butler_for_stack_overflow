@@ -24,11 +24,28 @@
                 	</form>
                 </div>
             </div>
-        </div>
+            <div class="panel panel-danger" ng-show="showReqs">
+				<div class="panel-heading">Requirement Errors</div>
+					<div class="panel-body">
+						<ul>
+							<li ng-repeat="req in reqs">{{ req }}</li>
+						</ul>
+					</div>
+				</div>
+        	</div>
     </div>
     <div class="col-md-12">
         <div class="well well-lg" ng-repeat="question in questions">
-                <p>{{question.title}}</p>
+        	<div class="row">
+        		<div class="col-sm-8">
+	                <a ng-href="#/questions/{{question.id}}">
+	                	<p>{{question.title}}</p>
+	                </a>
+        		</div>
+        		<div class="col-sm-4">
+        			Like or Dislike
+        		</div>
+        	</div>
         </div>
     </div>
 </div>
