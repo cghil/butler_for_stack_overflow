@@ -3,14 +3,14 @@
         <div class="col-sm-3">
             <div class="row">
                 <div class="col-xs-7 col-sm-12">
-                    <img src="{{gravatar}}" class="img-thumbnail">
+                    <img src="{{user.gravatar}}" class="img-thumbnail">
                 </div>
                 <div class="col-xs-5 col-sm-12">
                     <h3>General Information</h3>
                     <ul class="profile-details">
                         <li>
-                        	<b>Username <span class="glyphicon glyphicon-user" aria-hidden="true"></span></b>
-                        	<div>{{user.username}}</div>
+                            <b>Username <span class="glyphicon glyphicon-user" aria-hidden="true"></span></b>
+                            <div>{{user.username}}</div>
                         </li>
                         <li>
                             <b>Email <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></b>
@@ -22,16 +22,36 @@
                         </li>
                     </ul>
                     <h3>Bio</h3>
-                    <p><span class="glyphicon glyphicon-book"></span> This is a bio</p>
+                    <span class="glyphicon glyphicon-book"></span>
+                    <button class="btn btn-default" ng-show="yourpage" ng-click="showBioForm()">Edit Bio</button>
+                    <p>{{user.bio || "No Current Bio"}}</p>
+                    <form ng-show="bioForm" ng-submit="submitBio()">
+                        <div class="form-group">
+                            <label for="bio">Edit Bio</label>
+                            <textarea class="form-control" id="bio" placeholder="{{user.bio}}" rows="2" ng-model="user.bio"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit Bio</button>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="col-sm-9">
-            <div class="well lg-well">
-            	<div class="text-center">
-                	<a class="btn btn-success btn-lg" href="#/questions">Have A Question, Sir/Madam?</a>
-            	</div>
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active">
+                        <a ng-href="#/users/{{paramId}}">Questions</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#/users/{{paramId}}">Comments</a>
+                    </li>
+                </ul>
             </div>
+            <!-- <div class="well lg-well">
+                <div class="text-center">
+                    <a class="btn btn-success btn-lg" href="#/questions">Have A Question, Sir/Madam?</a>
+                </div>
+            </div> -->
         </div>
     </div>
 </div>
+<br>
