@@ -32,12 +32,12 @@
 			<div ng-repeat="comment in comments">
 				<div class="media">
 					<p class="pull-right"><small>{{ moment(comment.created_at, moment.ISO_8601).fromNow() }}</small></p>
-					<div class="pull-right" ng-show="showDelete(comment)">
-						<button class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button></p>
-					</div>
 					<a class="media-left" ng-href="#/users/{{comment.user_id}}">
 						<img src="{{comment.gravatar}}" class="img-thumbnail">
 					</a>
+				</div>
+				<div class="pull-right" ng-show="showDelete(comment)">
+					<button class="btn btn-danger" ng-click="deleteComment(comment)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></p>
 				</div>
 				<div class="media-body">
 					<h4 class="media-heading user_name">{{comment.author}}</h4>

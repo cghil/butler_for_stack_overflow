@@ -16,7 +16,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'door3.css'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -40,7 +41,8 @@ angular
       .when('/users/:id', {
         templateUrl: 'views/users.html',
         controller: 'UsersCtrl',
-        controllerAs: 'users'
+        controllerAs: 'users',
+        css: 'styles/profile.css'
       })
       .when('/questions', {
         templateUrl: 'views/questions.html',

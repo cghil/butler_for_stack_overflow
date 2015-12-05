@@ -10,6 +10,8 @@
 angular.module('myAuthApp')
   .controller('UsersCtrl', function($scope, sessionService, $location, userService, $routeParams) {
    	
+    $scope.moment = moment;
+
     if ($routeParams.id == sessionStorage.id){
       $scope.yourpage = true;
     } else {
@@ -30,11 +32,31 @@ angular.module('myAuthApp')
     var httpUser = userService.showUser(token, $routeParams.id);
     
     httpUser.then(function(response){
-      $scope.user = response.data;
-      $scope.user.gravatar = enlargeGravatar(response.data.gravatar);
+      $scope.user = response.data.user;
+      $scope.questions = response.data.questions.reverse();
+      debugger
+      $scope.comments = response.data.comments.reverse();
+      $scope.user.gravatar = enlargeGravatar(response.data.user.gravatar);
     }, function(response){
       console.log('Error!');
     });
+
+    $scope.showComments = false;
+    $scope.showQuestions = true;
+
+    $scope.switchShowValuesForCommentsAndQuestions = function(value){
+      
+      if(value === "comment") {
+        $scope.showComments = true;
+        $scope.showQuestions = false;
+      }
+
+      if(value === "question") {
+        $scope.showComments = false;
+        $scope.showQuestions = true;
+      }
+
+    };
 
     $scope.bioForm = false;
     
@@ -46,6 +68,7 @@ angular.module('myAuthApp')
       var bio = $scope.user.bio;
       var user = {user: {bio: bio}}
       userService.updateUser(token, $routeParams.id, user);
+      $scope.showBioForm();
     };
 
   });
